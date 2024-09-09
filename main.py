@@ -23,6 +23,13 @@ class Deck:
                 created_card = Card(suit, rank)
 
                 self.deck.append(created_card)
+
+    def __len__(self):
+        return len(self.deck)
+
+    def __getitem__(self, index):
+        return self.deck[index]
+
     def shuffle(self):
         random.shuffle(self.deck)
 
