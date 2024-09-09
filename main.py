@@ -21,4 +21,10 @@ class Deck:
         for suit in suits:
             for rank in ranks:
                 created_card = Card(suit, rank)
+
                 self.deck.append(created_card)
+    def shuffle(self):
+        random.shuffle(self.deck)
+
+    def deal(self):
+        return self.deck.pop()
