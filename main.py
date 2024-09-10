@@ -118,6 +118,23 @@ def show_some(player, dealer):
     print(dealer.cards[1])
 
     #show 2 of the player's cards
+    print("\n Player's hand:")
     for card in player.cards:
-        print("\n Player's hand:")
         print(card)
+
+def show_all(player, dealer):
+
+    #show all the dealer's cards
+    print("\n Dealer's hand:")
+    for card in dealer.cards:
+        print(card)
+
+    #calculate and display value (e.g. J+K == 20)
+    print(f"Value of dealer's hand is: {dealer.value}")
+
+    #show all the player's cards
+    print("\n Player's hand:")
+    for card in player.cards:
+        print(card)
+
+    print(f"Value of dealer's hand is: {player.value}")
