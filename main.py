@@ -137,7 +137,7 @@ def show_all(player, dealer):
     for card in player.cards:
         print(card)
 
-    print(f"Value of dealer's hand is: {player.value}")
+    print(f"Value of player's hand is: {player.value}")
 
 def player_busts(player, dealer, chips):
     print("BUST PLAYER!")
@@ -190,7 +190,7 @@ while True:
         show_some(player_hand, dealer_hand)
 
         #if player's hand exceeds 21, run player_busts(_) and break out of loop
-        if player_hand > 21:
+        if player_hand.value > 21:
             player_busts(player_hand, dealer_hand, player_chips)
             break
 
@@ -204,11 +204,11 @@ while True:
         show_all(player_hand, dealer_hand)
 
         #run different winning scenarios
-        if dealer_hand > 21:
+        if dealer_hand.value > 21:
             dealer_busts(player_hand, dealer_hand, player_chips)
-        elif dealer_hand > player_hand:
+        elif dealer_hand.value > player_hand.value:
             dealer_wins(player_hand, dealer_hand, player_chips)
-        elif dealer_hand < player_hand:
+        elif dealer_hand.value < player_hand.value:
             player_wins(player_hand, dealer_hand, player_chips)
         else:
             push(player_hand, dealer_hand)
