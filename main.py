@@ -59,3 +59,15 @@ class Hand:
         while self.value > 21 and self.aces > 0:
             self.value -= 10
             self.aces -= 1
+
+class Chips:
+
+    def __init__(self):
+        self.total = total
+        self.bet = 0
+
+    def win_bet(self):
+        self.total += self.bet
+
+    def lose_bet(self):
+        self.total -= self.bet
