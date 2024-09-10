@@ -37,5 +37,25 @@ class Deck:
         single_card = self.deck.pop()
         return single_card
 
-test_deck = Deck()
-print(test_deck)
+class Hand:
+
+    def __init__(self):
+        self.cards = []
+        self.value = 0
+        self.aces = 0
+
+    def add_card(self, card):
+        self.cards.append(card)
+        self.value += values[card.rank]
+
+        #track aces in hand
+        if card.rank == 'Ace':
+            self.aces += 1
+
+    def adjust_for_ace(self):
+
+        # if total value > 21 and I still have an ace
+        # then change my ace to be 1 instead of 11
+        while self.value > 21 and self.aces > 0:
+            self.value -= 10
+            self.aces -= 1
