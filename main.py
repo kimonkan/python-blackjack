@@ -154,3 +154,74 @@ def dealer_wins(player, dealer, chips):
 
 def push(player, dealer):
     print("Dealer and player tie! PUSH")
+
+# STARTING THE GAME
+
+while True:
+
+    print("Welcome to Blackjack!")
+    #create and shuffle the deck, deal two cards to each player
+    deck = Deck()
+    deck.shuffle()
+
+    player_hand = Hand()
+    player_hand.add_card(deck.deal())
+    player_hand.add_card(deck.deal())
+
+    dealer_hand = Hand()
+    dealer_hand.add_card(deck.deal())
+    dealer_hand.add_card(deck.deal())
+
+    #setup player's chips
+    player_chips = Chips()
+
+    #prompt player for bet
+    take_bet(player_chips)
+
+    #show cards but keep one dealer card hidden
+    show_some(player_hand, dealer_hand)
+
+    while playing: #recall this variable from hit_or_stand function
+
+        #prompt for player to hit or stand
+        hit_or_stand(deck, player_hand)
+
+        #show cards (but keep on dealer card hidden)
+        show_some(player_hand, dealer_hand)
+
+        #if player's hand exceeds 21, run player_busts(_) and break out of loop
+        if player_hand > 21:
+            player_busts(player_hand, dealer_hand, player_chips)
+            break
+
+    #if player hasn't busted, play dealer's hand until dealer reaches 17
+    if player_hand.value <= 21:
+
+        while dealer_hand.value < 17:
+            hit(deck, dealer_hand)
+
+        #show all cards
+        show_all(player_hand, dealer_hand)
+
+        #run different winning scenarios
+        if dealer_hand > 21:
+            dealer_busts(player_hand, dealer_hand, player_chips)
+        elif dealer_hand > player_hand:
+            dealer_wins(player_hand, dealer_hand, player_chips)
+        elif dealer_hand < player_hand:
+            player_wins(player_hand, dealer_hand, player_chips)
+        else:
+            push(player_hand, dealer_hand)
+
+    #inform player of their chips total
+    print(f"\n Player total chips are at: {player_chips.total}")
+
+    #ask to play again
+    new_game = input("Would you like to play again? Enter y or n: ")
+
+    if new_game[0].lower() == 'y':
+        playing = True
+        continue
+    else:
+        print("Thanks for playing!")
+        break
