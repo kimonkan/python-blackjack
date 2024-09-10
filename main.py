@@ -109,3 +109,15 @@ def hit_or_stand(deck, hand):
             print("Sorry, i did not understand, please enter h or s only!")
             continue
         break
+
+def show_some(player, dealer):
+
+    #show only one of the dealer's cards
+    print("\n Dealer's hand: ")
+    print("First card hidden!")
+    print(dealer.cards[1])
+
+    #show 2 of the player's cards
+    for card in player.cards:
+        print("\n Player's hand:")
+        print(card)
